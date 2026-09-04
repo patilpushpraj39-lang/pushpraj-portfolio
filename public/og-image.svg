@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <rect width="1200" height="630" fill="#F7F4EF"/>
+
+  <rect x="0" y="0" width="1200" height="6" fill="#A0764E"/>
+
+  <text x="100" y="180" font-family="DejaVu Sans" font-size="72" font-weight="600" fill="#1A1A1A" letter-spacing="0">Pushpraj Patil</text>
+
+  <line x1="100" y1="210" x2="220" y2="210" stroke="#A0764E" stroke-width="3"/>
+
+  <text x="100" y="280" font-family="DejaVu Sans" font-size="36" font-weight="400" fill="#6B6B6B">Engineering Student &amp; Developer</text>
+
+  <text x="100" y="380" font-family="-apple-system, 'Segoe UI', Roboto, sans-serif" font-size="28" font-weight="400" fill="#8A8A8A">Building thoughtful digital experiences</text>
+  <text x="100" y="420" font-family="-apple-system, 'Segoe UI', Roboto, sans-serif" font-size="28" font-weight="400" fill="#8A8A8A">with code, AI and interactive design.</text>
+
+  <text x="100" y="560" font-family="'Courier New', monospace" font-size="20" font-weight="400" fill="#A0764E" letter-spacing="3">PORTFOLIO</text>
+
+  <rect x="1050" y="540" width="50" height="50" rx="12" fill="none" stroke="#A0764E" stroke-width="2" opacity="0.3"/>
+  <text x="1075" y="572" font-family="DejaVu Sans" font-size="22" font-weight="600" fill="#1A1A1A" text-anchor="middle" letter-spacing="0">PP</text>
+</svg>

@@ -1,0 +1,265 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    border-color: theme('colors.hairline');
+  }
+
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    scroll-behavior: smooth;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    @apply bg-base text-ink font-sans antialiased;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3 {
+    text-wrap: balance;
+    font-family: theme('fontFamily.serif');
+    font-weight: 500;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  ::selection {
+    @apply bg-accent/20 text-ink;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-base;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply rounded-full;
+    background: rgba(26, 24, 20, 0.12);
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(160, 118, 78, 0.4);
+  }
+
+  :focus-visible {
+    outline: 2px solid theme('colors.accent.DEFAULT');
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  a, button {
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    @apply bg-gradient-to-r from-ink via-ink to-ink-secondary bg-clip-text text-transparent;
+  }
+
+  .text-accent-gradient {
+    @apply bg-gradient-to-r from-accent via-accent-hover to-accent bg-clip-text text-transparent;
+  }
+
+  .glass {
+    @apply bg-base/80 backdrop-blur-xl border-b border-hairline;
+  }
+
+  .grid-pattern {
+    background-image:
+      linear-gradient(to right, rgba(26, 24, 20, 0.03) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(26, 24, 20, 0.03) 1px, transparent 1px);
+    background-size: 64px 64px;
+    -webkit-mask-image: radial-gradient(ellipse 70% 60% at center, black 20%, transparent 80%);
+    mask-image: radial-gradient(ellipse 70% 60% at center, black 20%, transparent 80%);
+  }
+
+  .dot-pattern {
+    background-image: radial-gradient(rgba(26, 24, 20, 0.06) 1px, transparent 1px);
+    background-size: 22px 22px;
+  }
+
+  .noise::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.4'/%3E%3C/svg%3E");
+    opacity: 0.015;
+    pointer-events: none;
+    mix-blend-mode: multiply;
+    z-index: 1;
+  }
+
+  .perspective {
+    perspective: 1200px;
+  }
+
+  .aurora {
+    background: conic-gradient(from 180deg at 50% 50%,
+      rgba(160, 118, 78, 0.06) 0deg,
+      rgba(160, 118, 78, 0.01) 60deg,
+      rgba(107, 142, 90, 0.04) 120deg,
+      rgba(160, 118, 78, 0.05) 200deg,
+      rgba(160, 118, 78, 0.06) 360deg);
+    animation: aurora-rotate 25s linear infinite;
+  }
+
+  .shimmer {
+    background: linear-gradient(
+      90deg,
+      rgba(26, 24, 20, 0.2) 0%,
+      rgba(26, 24, 20, 0.6) 50%,
+      rgba(26, 24, 20, 0.2) 100%
+    );
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shimmer 4s ease-in-out infinite;
+  }
+
+  .glow-border {
+    position: relative;
+  }
+  .glow-border::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    background: linear-gradient(135deg, rgba(160, 118, 78, 0.2), transparent 50%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+    z-index: -1;
+  }
+  .glow-border:hover::before {
+    opacity: 1;
+  }
+
+  .clip-reveal {
+    clip-path: inset(0 100% 0 0);
+  }
+
+  .mask-fade-x {
+    -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+    mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  /* Elegant underline animation for links */
+  .link-underline {
+    position: relative;
+    display: inline-block;
+    transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .link-underline::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    width: 100%;
+    height: 1px;
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .link-underline:hover {
+    transform: translateX(2px);
+  }
+  .link-underline:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+
+  /* Subtle press scale for buttons */
+  .press-scale {
+    transition: transform 0.15s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .press-scale:active {
+    transform: scale(0.975);
+  }
+
+  /* Button sheen on hover */
+  .btn-sheen {
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.15s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .btn-sheen:active {
+    transform: scale(0.975);
+  }
+  .btn-sheen::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.08),
+      transparent
+    );
+    transition: left 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+    pointer-events: none;
+  }
+  .btn-sheen:hover::before {
+    left: 100%;
+  }
+}
+
+@keyframes aurora-rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+[data-cursor] {
+  cursor: pointer;
+}
+
+.cursor-active,
+.cursor-active a,
+.cursor-active button,
+.cursor-active [data-cursor] {
+  cursor: none;
+}
+
+@media (hover: none) {
+  .cursor-dot,
+  .cursor-ring {
+    display: none !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .cursor-ring,
+  .cursor-dot {
+    display: none !important;
+  }
+}

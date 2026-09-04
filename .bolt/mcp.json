@@ -1,0 +1,7 @@
+{
+  "mcpServers": {
+    "chatgpt": {
+      "enabled": true
+    }
+  }
+}
