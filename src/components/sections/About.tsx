@@ -49,6 +49,7 @@ export function About() {
   const yRings = useTransform(scrollYProgress, [0, 1], ['2%', '-2%']);
   const photoRef = useRef<HTMLDivElement>(null);
   const photoInView = useInView(photoRef, { once: true, margin: '-80px' });
+  const portraitSrc = `${import.meta.env.BASE_URL}images/pushpraj-about.jpg`;
 
   // Portrait cursor-following movement
   const portraitX = useMotionValue(0);
@@ -156,7 +157,7 @@ export function About() {
                     className="absolute inset-0"
                   >
                     <img
-                     src="/images/pushpraj-about.jpg"
+                      src={portraitSrc}
                       alt="Portrait of Pushpraj Patil"
                       loading="lazy"
                       className="h-full w-full object-cover object-center transition-transform duration-700 ease-expo group-hover:scale-[1.015]"
