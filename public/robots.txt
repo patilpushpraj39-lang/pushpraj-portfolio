@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://YOUR-FINAL-DOMAIN.com/sitemap.xml
+Sitemap: https://patilpushpraj39-lang.github.io/pushpraj-portfolio/sitemap.xml
