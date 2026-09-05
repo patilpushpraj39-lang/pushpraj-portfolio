@@ -156,7 +156,7 @@ export function About() {
                     className="absolute inset-0"
                   >
                     <img
-                      src="/images/IMG_20251214_154837.jpg.jpeg"
+                     src="/images/pushpraj-about.jpg"
                       alt="Portrait of Pushpraj Patil"
                       loading="lazy"
                       className="h-full w-full object-cover object-center transition-transform duration-700 ease-expo group-hover:scale-[1.015]"
