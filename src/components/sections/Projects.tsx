@@ -60,6 +60,9 @@ interface ProjectCardProps {
 function ProjectCard({ project, index }: ProjectCardProps) {
   const ref = useRef<HTMLDivElement>(null);
   const reduced = usePrefersReducedMotion();
+  const projectImage = project.image.startsWith('/')
+    ? `${import.meta.env.BASE_URL}${project.image.slice(1)}`
+    : project.image;
 
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -107,35 +110,35 @@ function ProjectCard({ project, index }: ProjectCardProps) {
               }}
               className="absolute inset-0"
             >
-            <img
-              src={project.image}
-              alt={`${project.title} website preview`}
-              loading="lazy"
-              draggable={false}
-              className="h-full w-full object-cover opacity-90 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.02] group-hover:opacity-100"
+              <img
+                src={projectImage}
+                alt={`${project.title} website preview`}
+                loading="lazy"
+                draggable={false}
+                className="h-full w-full object-cover opacity-90 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.02] group-hover:opacity-100"
+              />
+            </motion.div>
+
+            {/* Subtle bottom gradient for depth */}
+            <div className="absolute inset-0 bg-gradient-to-t from-base/50 via-transparent to-transparent" />
+
+            {/* Accent top line — barely visible, strengthens on hover */}
+            <div
+              className="absolute inset-x-0 top-0 h-px opacity-20 transition-opacity duration-500 group-hover:opacity-50"
+              style={{ background: `linear-gradient(to right, ${project.accent}, transparent)` }}
             />
-          </motion.div>
 
-          {/* Subtle bottom gradient for depth */}
-          <div className="absolute inset-0 bg-gradient-to-t from-base/50 via-transparent to-transparent" />
+            {/* Year badge */}
+            <div className="absolute right-5 top-5 rounded-full border border-hairline bg-base/80 px-3.5 py-1.5 font-mono text-xs text-ink-secondary backdrop-blur-md">
+              {project.year}
+            </div>
 
-          {/* Accent top line — barely visible, strengthens on hover */}
-          <div
-            className="absolute inset-x-0 top-0 h-px opacity-20 transition-opacity duration-500 group-hover:opacity-50"
-            style={{ background: `linear-gradient(to right, ${project.accent}, transparent)` }}
-          />
-
-          {/* Year badge */}
-          <div className="absolute right-5 top-5 rounded-full border border-hairline bg-base/80 px-3.5 py-1.5 font-mono text-xs text-ink-secondary backdrop-blur-md">
-            {project.year}
-          </div>
-
-          {/* Project number — visually secondary */}
-          <motion.div
-            style={{ y: reduced ? 0 : numY, color: `${project.accent}40` }}
-            className="absolute left-5 top-4 font-mono text-4xl font-bold lg:text-5xl"
-          >
-            {project.number}
+            {/* Project number — visually secondary */}
+            <motion.div
+              style={{ y: reduced ? 0 : numY, color: `${project.accent}40` }}
+              className="absolute left-5 top-4 font-mono text-4xl font-bold lg:text-5xl"
+            >
+              {project.number}
             </motion.div>
           </div>
         </a>
@@ -169,10 +172,7 @@ function ProjectCard({ project, index }: ProjectCardProps) {
           {project.description}
         </motion.p>
 
-        <motion.div
-          variants={fadeUp}
-          className="mt-5 space-y-3"
-        >
+        <motion.div variants={fadeUp} className="mt-5 space-y-3">
           <div className="flex gap-3">
             <span className="font-mono text-xs uppercase tracking-widest text-ink-faint shrink-0 pt-0.5">
               Problem
@@ -188,10 +188,7 @@ function ProjectCard({ project, index }: ProjectCardProps) {
         </motion.div>
 
         {/* Technology tags — staggered */}
-        <motion.div
-          variants={fadeUp}
-          className="mt-7 flex flex-wrap gap-2"
-        >
+        <motion.div variants={fadeUp} className="mt-7 flex flex-wrap gap-2">
           {project.stack.map((tech) => (
             <motion.span
               key={tech}
